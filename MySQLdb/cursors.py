@@ -203,7 +203,10 @@ class BaseCursor:
                 raise ProgrammingError(str(m))
 
         assert isinstance(query, (bytes, bytearray))
-        res = self._query(query)
+        try:
+            res = self._query(query)
+        except Exception as e:
+            db.close()
         return res
 
     def executemany(self, query, args):

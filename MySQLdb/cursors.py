@@ -207,6 +207,7 @@ class BaseCursor:
             res = self._query(query)
         except Exception as e:
             db.close()
+            raise e
         return res
 
     def executemany(self, query, args):
